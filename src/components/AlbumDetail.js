@@ -10,7 +10,8 @@ import Button from './Button';
 //         //     <Text>{props.album.title}</Text>
 //         // </View>
 
-//         //Burada bir view altında image, text, button vs kullanılarak da göstermek istediğimiz şablon oluşturulabilirdi.
+//         //Burada bir view altında image, text, button vs kullanılarak da 
+//         //göstermek istediğimiz şablon oluşturulabilirdi.
 //         //Ancak styling kısmını kolaylaştırmak adına 'Card' isimli alt bölümler oluşturuldu:
 //         // <Card>
 //         //     <Text>{props.album.title}</Text>
