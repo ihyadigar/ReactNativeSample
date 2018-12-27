@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 
 const Card = (props) => {
     return (
-        //props.children bir component'in açılış ve kapanış tagleri arasında her ne varsa göster demektir
-        //AlbumDetail dosyasında bu component'i çağırırken açılış ve kapanış tagleri arasında 'Text' göndermiştik :<Card><Text>{props.album.title}</Text></Card>
+        //props.children bir component'in açılış ve kapanış tagleri arasında her ne varsa 
+        //göster demektir. AlbumDetail dosyasında bu component'i çağırırken açılış ve kapanış 
+        //tagleri arasında 'Text' göndermiştik :<Card><Text>{props.album.title}</Text></Card>
         //Dolayısıyla burada da view içinde gönderilen text gözükecektir:
         
         <View style={styles.containerStyle}>
@@ -30,4 +31,4 @@ const styles = {
     }
 };
 
-export default Card;
+export { Card };
