@@ -21,13 +21,26 @@ class LoginForm extends Component {
         //Eğer giriş başarısız olursa catch() metoduna düşülür ve bu adımda yeni hesap oluşturmaya yönlendirir.
         //Eğer hesap oluşturma da başarısız olursa ekranda gösterilecek error state'i
         //komponentin rerender olması için güncellenir.
+
         firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(this.onLoginSuccess.bind(this))
             .catch(() => {
                 firebase.auth().createUserWithEmailAndPassword(email, password)
+                    .then(this.onLoginSuccess.bind(this))
                     .catch(() => {
                         this.setState({ error: 'Giriş Başarısız Oldu.' });
                     });
             });
+    }
+
+    //Login işlemi başarıyla gerçekleştiğinde yapılacakları halleden helper metodu:
+    onLoginSuccess() {
+        this.setState({
+            email: '',
+            password: '',
+            loading: false,
+            error: ''
+        });
     }
 
     //loading değerine göre butonu mu spinner'ı mı göstereceğimizi belirleyen helper metodu
