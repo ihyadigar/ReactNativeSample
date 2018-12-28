@@ -5,7 +5,7 @@ class LoginForm extends Component {
     //React native'de TextInput yaygın bilinen yöntemden farklı çalışır(Form submit edildiğinde değeri okuma vb.)
     //TextInput değeri state içinde tutulmalı ve her karakter girişinde setState ile güncellenmelidir.
     
-    state = { email: '' };
+    state = { email: '', password: '' };
 
   render() {
     return (
@@ -18,7 +18,15 @@ class LoginForm extends Component {
                 onChangeText={email => this.setState({ email })}
               />
           </CardSection>
-          <CardSection />
+          <CardSection>
+            <Input 
+                secureTextEntry
+                label="Şifre:"
+                placeholder="şifrenizi giriniz"
+                value={this.state.password}
+                onChangeText={password => this.setState({ password })}
+            />
+          </CardSection>
 
           <CardSection>
               <Button>
