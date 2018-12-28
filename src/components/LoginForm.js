@@ -27,9 +27,7 @@ class LoginForm extends Component {
             .catch(() => {
                 firebase.auth().createUserWithEmailAndPassword(email, password)
                     .then(this.onLoginSuccess.bind(this))
-                    .catch(() => {
-                        this.setState({ error: 'Giriş Başarısız Oldu.' });
-                    });
+                    .catch(this.onLoginFail.bind(this));
             });
     }
 
@@ -40,6 +38,13 @@ class LoginForm extends Component {
             password: '',
             loading: false,
             error: ''
+        });
+    }
+
+    onLoginFail() {
+        this.setState({
+            error: 'Giriş Başarısız Oldu!',
+            loading: false
         });
     }
 
