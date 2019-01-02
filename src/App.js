@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import firebase from '@firebase/app';
 import '@firebase/auth';
-import { Header, Button, CardSection } from './components/common';
+import { Header, Button, CardSection, Spinner } from './components/common';
 import LoginForm from './components/LoginForm';
 
 
 class App extends Component {
-    state = { loggedIn: false };
+    state = { loggedIn: null };
 
     componentWillMount() {
         firebase.initializeApp(
@@ -32,25 +32,37 @@ class App extends Component {
     }
 
     renderContent() {
-
-        if (this.state.loggedIn) {
-            return (
-                <CardSection>
-                    <Button>
-                        Çıkış Yap
-                </Button>
-                </CardSection>
-            );
+        //3 durumlu state için çözüm(true,false,null):
+        switch (this.state.loggedIn) {
+            case true:
+                return <Button>Çıkış Yap</Button>;
+            case false:
+                return <LoginForm />;
+            default:
+                return <Spinner size="large" />;
         }
 
-        return <LoginForm />;
+        //2 durumlu state için çözüm(true,false):
+        // if (this.state.loggedIn) {
+        //     return (
+        //         <CardSection>
+        //             <Button>
+        //                 Çıkış Yap
+        //         </Button>
+        //         </CardSection>
+        //     );
+        // }
+
+        // return <LoginForm />;
     }
 
     render() {
         return (
             <View>
                 <Header headerText="Giriş" />
-                {this.renderContent()}
+                <CardSection>
+                    {this.renderContent()}
+                </CardSection>
             </View>
         );
     }
