@@ -5,7 +5,6 @@ import { Text, TouchableOpacity } from 'react-native';
 //fonksiyonu parent component içinde prop olarak veriyoruz(onButtonPress):
 const Button = ({ onButtonPress, children }) => {
     const { buttonStyle, textStyle } = styles;
-
     return (
         //Ve TouchableOpacity'nin onPress fonksiyonuna prop'tan gelen 
         //fonksiyonu çalıştırmasını söylüyoruz:
