@@ -35,11 +35,11 @@ class App extends Component {
         //3 durumlu state için çözüm(true,false,null):
         switch (this.state.loggedIn) {
             case true:
-                return <Button>Çıkış Yap</Button>;
+                return <CardSection><Button onButtonPress={() => firebase.auth().signOut()}>Çıkış Yap</Button></CardSection>;
             case false:
                 return <LoginForm />;
             default:
-                return <Spinner size="large" />;
+                return <CardSection><Spinner size="large" /></CardSection>;
         }
 
         //2 durumlu state için çözüm(true,false):
@@ -60,9 +60,9 @@ class App extends Component {
         return (
             <View>
                 <Header headerText="Giriş" />
-                <CardSection>
-                    {this.renderContent()}
-                </CardSection>
+
+                {this.renderContent()}
+
             </View>
         );
     }
