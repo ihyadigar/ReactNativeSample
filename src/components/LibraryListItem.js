@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection } from './common';
 import * as actions from '../actions';
@@ -7,13 +7,20 @@ import * as actions from '../actions';
 class LibraryListItem extends Component {
     render() {
         const { titleStyle } = styles;
-        console.log(this.props)
+        const { id, title } = this.props.library.item;
+
         return (
-            <CardSection>
-                <Text style={titleStyle}>
-                    {this.props.library.item.title}
-                </Text>
-            </CardSection>
+            <TouchableWithoutFeedback
+                onPress={() => this.props.selectLibrary(id)}
+            >
+                <View>
+                    <CardSection>
+                        <Text style={titleStyle}>
+                            {title}
+                        </Text>
+                    </CardSection>
+                </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
@@ -25,7 +32,15 @@ const styles = {
     }
 };
 
-//connect fonksiyonunun ilk argümanı bir map fonksiyonu vermek, ikinci argümanı ise
+const mapStateToProps = state => {
+    return { selectLibraryId: state.selectLibraryId };
+};
+
+//connect fonksiyonunun ilk argümanı bir map state fonksiyonu vermek, ikinci argümanı ise
 //action creator'u bu komponent'e bağlamak için kullanılır:
+
 //Burada bir map state'i olmadığı için ilk argümana null veriyoruz:
-export default connect(null, actions)(LibraryListItem);
+//export default connect(null, actions)(LibraryListItem);
+
+//map state fonksiyonunu ekledikten sonra ilk argüman olarak onu veriyoruz:
+export default connect(mapStateToProps, actions)(LibraryListItem);
