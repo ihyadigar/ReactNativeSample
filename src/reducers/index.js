@@ -2,7 +2,14 @@
 //Bu reducer'ların birbiriyle uyumlu çalışabilmesi için combineReducers isimli paket kullanılır.
 
 import { combineReducers } from 'redux';
+import LibraryReducer from './LibraryReducer';
+import SelectionReducer from './SelectionReducer';
 
+//Uygulamamız için 2 adet durum gerekli: 
+//birisi kütüphane listesi(LibraryReducer)
+//diğeri de seçili kütüphane(SelectionReducer)
 export default combineReducers({
-    libraries: () => []
+    //Burada key olarak libraries veriliyor
+    libraries: LibraryReducer,
+    selectedLibraryId: SelectionReducer
 });
