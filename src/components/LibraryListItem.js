@@ -5,6 +5,18 @@ import { CardSection } from './common';
 import * as actions from '../actions';
 
 class LibraryListItem extends Component {
+
+    renderDescription() {    
+        //console.log(this.props);    
+        if (this.props.library.item.id === this.props.selectedLibraryId) {
+            return (
+                <CardSection>
+                <Text>{this.props.library.item.description}</Text>
+                </CardSection>
+            );
+        }
+    }
+
     render() {
         const { titleStyle } = styles;
         const { id, title } = this.props.library.item;
@@ -19,6 +31,7 @@ class LibraryListItem extends Component {
                             {title}
                         </Text>
                     </CardSection>
+                    {this.renderDescription()}
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -33,7 +46,8 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-    return { selectLibraryId: state.selectLibraryId };
+    //console.log(state)
+    return { selectedLibraryId: state.selectedLibraryId };
 };
 
 //connect fonksiyonunun ilk argümanı bir map state fonksiyonu vermek, ikinci argümanı ise

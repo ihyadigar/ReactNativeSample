@@ -9,7 +9,7 @@ import SelectionReducer from './SelectionReducer';
 //birisi kütüphane listesi(LibraryReducer)
 //diğeri de seçili kütüphane(SelectionReducer)
 export default combineReducers({
-    //Burada key olarak libraries veriliyor
+    //Burada key olarak libraries ve selectedLibraryId veriliyor
     libraries: LibraryReducer,
     selectedLibraryId: SelectionReducer
 });
