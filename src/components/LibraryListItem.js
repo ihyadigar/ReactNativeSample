@@ -7,8 +7,11 @@ import * as actions from '../actions';
 class LibraryListItem extends Component {
 
     renderDescription() {    
-        //console.log(this.props);    
-        if (this.props.library.item.id === this.props.selectedLibraryId) {
+        //Tıklama kontrölünün metod içinden yapıldığı durum:    
+        //if (this.props.library.item.id === this.props.selectedLibraryId) {
+        
+        //Tıklama kontrölünün mapStateToProps'taki expanded değerine göre yapıldığı durum:
+        if (this.props.expanded) {
             return (
                 <CardSection>
                 <Text>{this.props.library.item.description}</Text>
@@ -45,9 +48,16 @@ const styles = {
     }
 };
 
-const mapStateToProps = state => {
-    //console.log(state)
-    return { selectedLibraryId: state.selectedLibraryId };
+//Tıklanan kütüphaneyi kontrol işleminin renderDescription içinde yapıldığı versiyon:
+// const mapStateToProps = state => {
+//     return { selectedLibraryId: state.selectedLibraryId };
+// };
+
+//Tıklanan kütüphaneyi kontrol işleminin yapılıp buna göre bir boolean expanded değeri dönen versiyon:
+//ownProps=this.props
+const mapStateToProps = (state, ownProps) => {
+    const expanded = state.selectedLibraryId === ownProps.library.item.id;
+    return { expanded: expanded };
 };
 
 //connect fonksiyonunun ilk argümanı bir map state fonksiyonu vermek, ikinci argümanı ise
