@@ -6,15 +6,17 @@ import * as actions from '../actions';
 
 class LibraryListItem extends Component {
 
-    renderDescription() {    
+    renderDescription() {
         //Tıklama kontrölünün metod içinden yapıldığı durum:    
         //if (this.props.library.item.id === this.props.selectedLibraryId) {
-        
+
         //Tıklama kontrölünün mapStateToProps'taki expanded değerine göre yapıldığı durum:
         if (this.props.expanded) {
             return (
                 <CardSection>
-                <Text>{this.props.library.item.description}</Text>
+                    <Text style={{ flex: 1 }}>
+                        {this.props.library.item.description}
+                    </Text>
                 </CardSection>
             );
         }
