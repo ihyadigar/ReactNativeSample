@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import {
+    Platform,
+    UIManager,
+    Text,
+    TouchableWithoutFeedback,
+    View,
+    LayoutAnimation,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection } from './common';
 import * as actions from '../actions';
 
 class LibraryListItem extends Component {
+    //LayoutAnimation metodunun androidde çalışması için aşağıdaki tanımlamaları yapmak gerekiyor:
+    constructor(props) {
+        super(props);
+        if (Platform.OS === 'android') {
+            UIManager.setLayoutAnimationEnabledExperimental(true);
+            UIManager.setLayoutAnimationEnabledExperimental(true);
+        }
+    }
+
+    componentWillUpdate() {
+        LayoutAnimation.spring();
+    }
 
     renderDescription() {
         //Tıklama kontrölünün metod içinden yapıldığı durum:    
