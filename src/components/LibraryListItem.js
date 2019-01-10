@@ -74,11 +74,12 @@ const styles = {
 //     return { selectedLibraryId: state.selectedLibraryId };
 // };
 
-//Tıklanan kütüphaneyi kontrol işleminin yapılıp buna göre bir boolean expanded değeri dönen versiyon:
+//Tıklanan kütüphaneyi kontrol işleminin yapılıp 
+//buna göre bir boolean expanded değeri dönen versiyon:
 //ownProps=this.props
 const mapStateToProps = (state, ownProps) => {
-    const expanded = state.selectedLibraryId === ownProps.library.item.id;
-    return { expanded: expanded };
+    const isExpanded = state.selectedLibraryId === ownProps.library.item.id;
+    return { expanded: isExpanded };
 };
 
 //connect fonksiyonunun ilk argümanı bir map state fonksiyonu vermek, ikinci argümanı ise
